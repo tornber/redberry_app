@@ -1,0 +1,116 @@
+.private {
+    display: flex;
+    height: 100vh;
+}
+
+.left {
+    flex: 0.55;
+    background-color: #F9F9F9;
+}
+
+.form {
+    margin-top: 70px;
+    margin-left: 125px;
+    max-width: 850px;
+}
+
+.name--surname {
+    display: flex;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    min-height: 120px;
+    padding-left: 24px;
+}
+
+.label-font-style {
+    font-size: 16px;
+    font-weight:800;
+    color: #000000;
+}
+
+.name input {
+    height: 50px;
+    width: 370px;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+    text-indent: 16px;
+    
+}
+
+.name:last-child {
+    margin-left: 28px;
+}
+
+.validation--message {
+    font-size: 14px;
+    font-weight: lighter;
+    color: #2E2E2E;
+}
+
+.photo--upload {
+    display: block;
+    font-size: 18px;
+    font-weight:800;
+    color: #000000;
+    padding-left: 24px;
+    margin-top: 45px;
+}
+
+.about--myself {
+    margin-top: 50px;
+}
+
+.about--myself textarea {
+    margin-top: 10px;
+    width: 780px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+    line-height: 22px;
+    resize: none;
+}
+
+.contact {
+    margin-top: 10px;
+}
+
+.contact input {
+    width: 90%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+    text-indent: 16px;
+    width: 800px;
+
+}
+
+.next--btn--container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.next--btn {
+    margin-left: 24px;
+    height: 50px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #6B40E3;
+    margin-top: 50px;
+
+}
+
+.right {
+    flex: 0.45;
+}

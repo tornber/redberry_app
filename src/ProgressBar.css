@@ -1,0 +1,38 @@
+.progress--bar {
+    margin-top: 50px;
+}
+
+.progress--container {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.back--vector {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress--header {
+    margin-left: 60px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.progress--counter {
+    font-size: 20px;
+    margin-left: 590px;
+}
+
+.progress--line {
+    margin-left: 150px;
+    margin-top: 10px;
+    background-color: black;
+    width: 800px;
+    height: 1px;
+}
