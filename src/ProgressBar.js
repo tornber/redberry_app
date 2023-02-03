@@ -1,14 +1,15 @@
 import React from 'react'
 import './ProgressBar.css'
 import BackVector from'./img/Vector.png'
+import {Link} from 'react-router-dom'
 
 const ProgressBar = ({progress}) => {
   return (
     <div className='progress--bar'>
         <div className='progress--container'>
-            <div className='back--vector'>
+            <Link to='/' className='back--vector'>
                 <img src={BackVector} alt='back to first page' />
-            </div>
+            </Link>
             <h1 className='progress--header'>პირადი ინფო</h1>
             <h2 className='progress--counter'>{progress}/3</h2>
         </div>

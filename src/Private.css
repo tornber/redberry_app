@@ -26,6 +26,7 @@
     align-items: flex-start;
     min-height: 120px;
     padding-left: 24px;
+    position: relative;
 }
 
 .label-font-style {
@@ -41,6 +42,7 @@
     font-weight: 700;
     color: black;
     text-indent: 16px;
+    outline: none;
     
 }
 
@@ -76,6 +78,7 @@
     color: black;
     line-height: 22px;
     resize: none;
+    outline: none;
 }
 
 .contact {
@@ -90,6 +93,7 @@
     color: black;
     text-indent: 16px;
     width: 800px;
+    outline: none;
 
 }
 
@@ -109,6 +113,32 @@
     background-color: #6B40E3;
     margin-top: 50px;
 
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.success {
+    border: 1px solid green;
+}
+
+.success--logo {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+}
+
+.warning--logo {
+    position: absolute;
+    right: -8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
 }
 
 .right {
