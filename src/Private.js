@@ -1,10 +1,11 @@
-import {useState,useRef, useContext,useEffect} from 'react'
+import {useState,useRef, useContext} from 'react'
 import './Private.css'
 import ProgressBar from './ProgressBar'
 import { Link } from 'react-router-dom'
 import SuccessLogo from './img/SuccessLogo.png'
 import WarningLogo from './img/WarningLogo.png'
 import {FormDataContext} from './FormDataContext'
+import GeneratedCV from './GeneratedCV';
 
 const Private = () => {
 
@@ -24,10 +25,6 @@ const Private = () => {
         checkIfValid(name,value)
     }
 
-    const handleImageUpload = () => {
-        imageRef.current.click()
-    }
-
     const checkIfValid = (name,value) => {
         if(name === 'name' || name === 'surname') {
             const regex = /^[ა-ჰ]+$/
@@ -37,6 +34,7 @@ const Private = () => {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
             }
         }
+
         if(name === 'email') {
             if(value.endsWith("@redberry.ge")) {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
@@ -52,6 +50,15 @@ const Private = () => {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: -1}))
             }
         }
+        
+    }
+
+    const handleImageUpload = () => {
+        imageRef.current.click()
+    }
+
+    const saveImage = (e) => {
+        console.log(e.target.files[0])
     }
 
     return (
@@ -78,10 +85,11 @@ const Private = () => {
                         </div>
                     </div>
                     <label htmlFor="photo" className='photo--upload'>პირადი ფოტოს ატვირთვა <button onClick={() => handleImageUpload()} className='upload--btn'>ატვირთვა</button></label>
-                    <input type='file' id='photo' name='photo' alt='ატვირთვა' accept='image/*' className='hidden' ref={imageRef} required/>
+                    <input type='file' id='photo' name='photo' alt='ატვირთვა' accept='image/*' className='hidden' onChange={(e) => saveImage(e)} ref={imageRef} required/>
                     <div className='container about--myself'>
                         <label htmlFor="aboutMyself" className='label-font-style'>ჩემს შესახებ (არასავალდებულო) </label>
-                        <textarea id='aboutMyself' name='aboutMyself' rows='4' cols="70" onChange={(e) => handleFormChange(e)} value={formData.aboutMyself} placeholder='ზოგადი ინფო შენს შესახებ'></textarea>
+                        <textarea id='aboutMyself' name='aboutMyself' rows='4' cols="70" wrap="hard"  
+                         onChange={(e) => handleFormChange(e)} value={formData.aboutMyself} placeholder='ზოგადი ინფო შენს შესახებ'></textarea>
                     </div>
                     <div className='container contact'>
                         <label htmlFor="email" className='label-font-style'>ელ.ფოსტა </label>
@@ -104,7 +112,7 @@ const Private = () => {
                     </div>
                 </form>
             </div>
-            <div className='right'></div>
+            <GeneratedCV />
         </div>
     )
 }

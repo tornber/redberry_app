@@ -12,12 +12,11 @@ function App() {
       surname: '',
       aboutMyself: '',
       email: '',
-      phone: ''
+      phone: '',
   });
   const [isFirstRender,seIsFirstRender] = useState(true)
   const [prevLocation,setPrevLocation] = useState("")
   const location = useLocation()
-
   useEffect(() => {
     if(isFirstRender) {
       const data = window.sessionStorage.getItem("data") || null
@@ -34,7 +33,7 @@ function App() {
 
   useEffect(() => {
     setPrevLocation(location.pathname)
-    if(prevLocation == "/") {
+    if(prevLocation === "/") {
       setFormData(() => {
         return {
             name: '',

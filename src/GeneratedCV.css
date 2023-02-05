@@ -1,0 +1,76 @@
+.generatedCV {
+    flex: 0.45;
+    margin-left: 80px;
+    margin-top: 70px;
+    position: relative;
+}
+
+.cv--logo {
+    position: absolute;
+    bottom: 45px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.cv--image {
+    position: absolute;
+    top: -20px;
+    right: 75px;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+}
+
+.cv--name {
+    font-size: 34px;
+    font-weight: 700;
+    color: #F93B1D;
+}
+
+.cv--email {
+    font-size: 18px;
+    color: #1A1A1A;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.cv--email > img {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.cv--phone {
+    font-size: 18px;
+    color: #1A1A1A;
+}
+
+.cv--phone > img {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.cv--about--myself {
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #F93B1D;
+}
+
+.about--myself--content {
+    font-size: 16px;
+    color: black;
+    max-width: 430px;
+}
+
+.cv--line {
+    position: absolute;
+    top: 350px;
+    border: 1px solid #C8C8C8;
+    width: 660px;
+}
+
