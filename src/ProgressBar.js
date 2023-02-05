@@ -4,10 +4,15 @@ import BackVector from'./img/Vector.png'
 import {Link} from 'react-router-dom'
 
 const ProgressBar = ({progress}) => {
+
+  const handleBackFirstPage = () => {
+    window.sessionStorage.removeItem('data')
+  }
+
   return (
     <div className='progress--bar'>
         <div className='progress--container'>
-            <Link to='/' className='back--vector'>
+            <Link to='/' onClick={handleBackFirstPage} className='back--vector'>
                 <img src={BackVector} alt='back to first page' />
             </Link>
             <h1 className='progress--header'>პირადი ინფო</h1>

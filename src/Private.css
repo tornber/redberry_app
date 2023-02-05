@@ -65,6 +65,23 @@
     margin-top: 45px;
 }
 
+.upload--btn {
+    width: 100px;
+    height: 30px;
+    margin-left: 20px;
+    background-color: #0E80BF;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
 .about--myself {
     margin-top: 50px;
 }
@@ -141,6 +158,11 @@
     height: 24px;
 }
 
+.minus--4percent {
+    right: -2%;
+}
+
+ 
 .right {
     flex: 0.45;
 }
