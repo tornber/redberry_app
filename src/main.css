@@ -1,6 +1,17 @@
-.private {
+::placeholder {
+    font-size: 16px;
+    opacity: 60%;
+    color: #000000;
+}
+
+.main {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
+    overflow: scroll;
+}
+
+.main::-webkit-scrollbar {
+    display: none;
 }
 
 .left {
@@ -119,7 +130,7 @@
     justify-content: flex-end;
 }
 
-.next--btn {
+.navigation--btn {
     margin-left: 24px;
     height: 50px;
     width: 150px;
@@ -158,7 +169,75 @@
     height: 24px;
 }
 
-.minus--4percent {
-    right: -2%;
+.minus--1percent {
+    right: -1%;
 }
 
+
+
+.experience--line {
+    border: 1px solid #C1C1C1;
+    width: 800px;
+    margin-left: 24px;
+    margin-top: 60px;   
+}
+
+.add--experience--btn {
+    margin-top: 45px;
+    margin-left: 149px;
+    border: none;
+    cursor: pointer;
+    width: 300px;
+    height: 50px;
+    background-color: #62A1EB;
+    color: white;
+    border-radius: 4px;
+}
+
+.navigation--container {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 115px;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+.back--btn {
+    margin-left: 149px;
+    width: 115px;
+}
+
+.next--btn {
+    position: absolute;
+    right: 40px;
+}
+
+.date--icon {
+    position: absolute;
+    right: 5%;
+    top: 65%;
+    transform: translateY(-65%);
+    width: 18px;
+    height: 20px;
+    cursor: pointer;
+}
+
+input[type=date]:invalid::-webkit-datetime-edit {
+    font-size: 16px;
+    opacity: 60%;
+    color: #000000;
+    margin-left: -16px;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-image: url('./img/date.png');
+    background-size: 18px 20px;
+    width: 22x;
+    height: 22px;
+    color: rgba(77, 77, 77, 1);
+    margin-right: 5%;
+    cursor: pointer;
+}

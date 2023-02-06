@@ -3,6 +3,11 @@
     margin-left: 80px;
     margin-top: 70px;
     position: relative;
+    overflow: scroll;
+}
+
+.generatedCV::-webkit-scrollbar {
+    display: none;
 }
 
 .cv--logo {
@@ -69,8 +74,35 @@
 
 .cv--line {
     position: absolute;
-    top: 350px;
+    top: 270px;
     border: 1px solid #C8C8C8;
     width: 660px;
 }
+
+.cv--experience {
+    position: absolute;
+    top: 275px;
+}
+
+.cv--position {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(26, 26, 26, 1);
+}
+
+.cv--dates {
+    margin-top: 7px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(144, 144, 144, 1);
+}
+
+.experiences-cv--line {
+    margin-top: 30px;
+    border: 1px solid #C8C8C8;
+    width: 660px;
+}
+
 

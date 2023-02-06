@@ -1,5 +1,5 @@
 import {useState,useRef, useContext} from 'react'
-import './Private.css'
+import './main.css'
 import ProgressBar from './ProgressBar'
 import { Link } from 'react-router-dom'
 import SuccessLogo from './img/SuccessLogo.png'
@@ -58,19 +58,19 @@ const Private = () => {
     }
 
     const saveImage = (e) => {
-        console.log(e.target.files[0])
+        setFormData({...formData,image: e.target.files[0]})
     }
 
     return (
-        <div className='private'>
+        <div className='main'>
             <div className='left'>
-                <ProgressBar progress={"1"}/>
+                <ProgressBar title="პირადი ინფო" progress={"1"}/>
                 <form className='form'>
                     <div className='name--surname'>
                         <div className='container name'>
                             <label htmlFor="name" className='label-font-style'>სახელი </label>
                             <input type="text" id="name" name="name" placeholder='ანზორ'min={2}  onChange={(e) => handleFormChange(e)}
-                             className={formValid?.name === -1 ? 'error' : formValid.name === 1 ? 'success' : ''}  value={formData.name} />
+                             className={formValid?.name === -1 ? 'error' : formValid.name === 1 ? 'success' : ''}  value={formData.name} required/>
                                 {formValid.name === 1 && (<img className="success--logo"src={SuccessLogo} alt="success logo"/>)}
                                 {formValid.name === -1 && <img className="warning--logo"src={WarningLogo} alt="warning logo"/>}
                             <p className='validation--message'>მინიმუმ 2 ასო, ქართული ასოები</p>
@@ -78,7 +78,7 @@ const Private = () => {
                         <div className='container name'>
                             <label htmlFor="surname" className='label-font-style'>გვარი </label>
                             <input type="text" id="surname"  name="surname" placeholder='მუმლაძე' min={2} onChange={(e) => handleFormChange(e)}
-                             className={formValid?.surname === -1 ? 'error' : formValid.name === 1 ? 'success' : ''} value={formData.surname} />
+                             className={formValid?.surname === -1 ? 'error' : formValid.name === 1 ? 'success' : ''} value={formData.surname} required />
                                 {formValid.surname === 1 && <img className="success--logo"src={SuccessLogo} alt="success logo"/>}
                                 {formValid.surname === -1 && <img className="warning--logo"src={WarningLogo} alt="warning logo"/>}
                             <p className='validation--message'>მინიმუმ 2 ასო, ქართული ასოები</p>
@@ -96,7 +96,7 @@ const Private = () => {
                         <input type="email" id="email" name="email" placeholder='anzor777@redberry.com' value={formData.email} onChange={(e) => handleFormChange(e)}
                          className={formValid?.email === -1 ? 'error' : formValid.email === 1 ? 'success' : ''} required/>
                         {formValid.email === 1 && (<img className="success--logo"src={SuccessLogo} alt="success logo"/>)}
-                        {formValid.email === -1 && <img className="warning--logo minus--4percent"src={WarningLogo} alt="warning logo"/>}
+                        {formValid.email === -1 && <img className="warning--logo minus--1percent"src={WarningLogo} alt="warning logo"/>}
                         <p className='validation--message'>უნდა მთავრდებოდეს @redberry.ge-ით</p>
                     </div>
                     <div className='container contact'>
@@ -104,11 +104,11 @@ const Private = () => {
                         <input type="text" id="phone" name="phone" placeholder='+995 551 12 34 56' value={formData.phone} onChange={(e) => handleFormChange(e)}
                          className={formValid?.phone === -1 ? 'error' : formValid.phone === 1 ? 'success' : ''} required/>
                         {formValid.phone === 1 && (<img className="success--logo"src={SuccessLogo} alt="success logo"/>)}
-                        {formValid.phone === -1 && <img className="warning--logo minus--4percent"src={WarningLogo} alt="warning logo"/>}
+                        {formValid.phone === -1 && <img className="warning--logo minus--1percent"src={WarningLogo} alt="warning logo"/>}
                         <p className='validation--message'>უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
                     </div>
                     <div className='next--btn--container'>
-                        <Link to='/experience' className='next--btn'>შემდეგი</Link>
+                        <Link to='/experience' className='navigation--btn'>შემდეგი</Link>
                     </div>
                 </form>
             </div>

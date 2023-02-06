@@ -4,10 +4,11 @@ import './GeneratedCV.css'
 import PhoneIcon from './img/phone.png'
 import MailIcon from './img/mail.png'
 import Logo from './img/CVLogo.png'
+import ExperienceCV from './ExperienceCV'
 
-const GeneratedCV = () => {
+const GeneratedCV = ({index}) => {
 
-    const {formData,setFormData} = useContext(FormDataContext)
+    const {formData} = useContext(FormDataContext)
     const [aboutMyselfText,setAboutMyselfText] = useState("")
 
     const handleTextWrap = () => {
@@ -31,7 +32,7 @@ const GeneratedCV = () => {
 
     return (
         <div className='generatedCV'>
-            <img className='cv--image' src={PhoneIcon}></img>
+            {formData.image && (<img className='cv--image' src={URL.createObjectURL(formData.image)} />)}
             <h1 className='cv--name'>{`${formData.name} ${formData.surname}`}</h1>
             {formData.email && (<h3 className='cv--email'><img src={MailIcon} alt="mail icon"/> {formData.email}</h3>)}
             {formData.phone && (<h3 className='cv--phone'><img src={PhoneIcon} alt="telephone icon"/> {formData.phone}</h3>)}
@@ -41,10 +42,11 @@ const GeneratedCV = () => {
                 <p className='about--myself--content'>{aboutMyselfText}</p>
             </div>
             )}
-            <div className='cv--line'></div>
-
-
+            {formData.name && (<div className='cv--line'></div>)}
             <img className='cv--logo' src={Logo} alt="cv star logo"/>
+            
+            <ExperienceCV />
+
         </div>
     )
 }

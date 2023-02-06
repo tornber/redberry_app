@@ -4,15 +4,24 @@ import {Routes,Route,useLocation} from 'react-router-dom';
 import Starter from './Starter';
 import Private from './Private';
 import {FormDataContext} from './FormDataContext'
+import Experience from './Experience';
 
 function App() {
 
   const [formData,setFormData] = useState({
       name: '',
       surname: '',
+      image: null,
       aboutMyself: '',
       email: '',
       phone: '',
+      experiences: [{
+        position: '',
+        employer: '',
+        start_date: '',
+        due_date: '',
+        description: '',
+      }]
   });
   const [isFirstRender,seIsFirstRender] = useState(true)
   const [prevLocation,setPrevLocation] = useState("")
@@ -40,7 +49,14 @@ function App() {
             surname: '',
             aboutMyself: '',
             email: '',
-            phone: ''
+            phone: '',
+            experiences: [{
+              position: '',
+              employer: '',
+              start_date: '',
+              due_date: '',
+              description: '',
+            }]
         }
       })
     }
@@ -52,6 +68,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Starter/>} />
           <Route path='/private' element={<Private/>} />
+          <Route path='/experience' element={<Experience/>} />
         </Routes>
       </FormDataContext.Provider>
     </div>
