@@ -25,7 +25,7 @@ const FinalCV = () => {
 
     return (
         <div className='finalCV'>
-            {formData.image && (<img className='cv--image' src={formData.image} />)}
+            {formData.image && (<img className='cv--image' src={`https://resume.redberryinternship.ge${formData.image}`} />)}
             <h1 className='cv--name'>{`${formData.name} ${formData.surname}`}</h1>
             {formData.email && (<h3 className='cv--email'><img src={MailIcon} alt="mail icon"/> {formData.email}</h3>)}
             {formData.phone_number && (<h3 className='cv--phone'><img src={PhoneIcon} alt="telephone icon"/> {formData.phone_number}</h3>)}
