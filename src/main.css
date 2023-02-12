@@ -46,7 +46,7 @@
     color: #000000;
 }
 
-.name input {
+.name input,.name select {
     height: 50px;
     width: 370px;
     font-size: 16px;
@@ -54,6 +54,8 @@
     color: black;
     text-indent: 16px;
     outline: none;
+    border: 1px solid #BCBCBC;
+    border-radius: 3px;
     
 }
 
@@ -107,6 +109,8 @@
     line-height: 22px;
     resize: none;
     outline: none;
+    border: 1px solid #BCBCBC;
+    border-radius: 3px;
 }
 
 .contact {
@@ -122,6 +126,8 @@
     text-indent: 16px;
     width: 800px;
     outline: none;
+    border: 1px solid #BCBCBC;
+    border-radius: 3px;
 
 }
 
@@ -140,15 +146,18 @@
     color: white;
     background-color: #6B40E3;
     margin-top: 50px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
 
 }
 
 .error {
-    border: 1px solid red;
+    border: 1px solid red!important;
 }
 
 .success {
-    border: 1px solid green;
+    border: 1px solid green!important;
 }
 
 .success--logo {
@@ -239,5 +248,64 @@ input[type=date]:invalid::-webkit-datetime-edit {
     height: 22px;
     color: rgba(77, 77, 77, 1);
     margin-right: 5%;
+    cursor: pointer;
+}
+
+.name select {
+    text-indent: 0px;
+    border-radius: 3px;
+    padding-left: 16px;
+    -webkit-appearance: none;
+    background-image: url('./img/downArrow.png');
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    color: rgba(26, 26, 26, 1);
+    font-weight: 400;
+    line-height: 21px;
+}
+
+
+select option {
+    font-size: 16px;
+    color: rgba(26, 26, 26, 1);
+}
+
+select .default--option {
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.resume {
+    display: flex;
+    justify-content: center;
+    min-height: 1260px;
+}
+
+.resume .p-ab {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+.pop--up {
+    position: absolute;
+    top: 50px;
+    right: 70px;
+    width: 430px;
+    height: 170px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.25);
+}
+
+.pop--up h1 {
+    padding-left: 30px;
+    padding-top: 40px;
+}
+
+.pop--up img {
+    position: absolute;
+    top: 16px;
+    right: 12px;
     cursor: pointer;
 }

@@ -2,13 +2,13 @@ import React,{useState,useEffect,useContext} from 'react'
 import {FormDataContext} from './FormDataContext'
 import './GeneratedCV.css'
 
-const ExperienceCV = () => {
-    
+const EducationCV = () => {
+  
     const {formData} = useContext(FormDataContext)
     const [aboutMyselfText,setAboutMyselfText] = useState([{index: 0,text: ''}])
 
     const handleTextWrap = (i) => {
-        const value = formData.experiences[i].description
+        const value = formData.educations[i].description
         if(value.length >= 90) {
             if(value.length % 90 === 0) {
                 const updatedTextArray = [...aboutMyselfText]
@@ -38,32 +38,32 @@ const ExperienceCV = () => {
     }
 
     useEffect(() => {
-        formData.experiences.map((experience,ind) => {
+        formData.educations.map((experience,ind) => {
             if(ind >= aboutMyselfText.length) {
                 setAboutMyselfText((prevAboutMyselfText) => [...prevAboutMyselfText,{index: aboutMyselfText.length,text:experience.description}])
             }
         })
-        formData.experiences.forEach((experience,ind) => {
+        formData.educations.forEach((experience,ind) => {
             handleTextWrap(ind)
         })
 
-    },[formData.experiences])
+    },[formData.educations])
 
     return (
-    <div className="cv--experience">
-        {formData.experiences[0].position && (<h3 className='cv--about--myself'>გამოცდილება</h3>)}
-        {formData.experiences.map((form,ind) => {
+    <div className="cv--education">
+        {formData.educations[0].institute && (<h3 className='cv--about--myself'>განათლება</h3>)}
+        {formData.educations.map((form,ind) => {
             return (
                 <div key={ind}>
-                    {form.position && (<p className='cv--position'>{form.position}{form?.employer !== "" ? `, ${form.employer}` : ''}</p>)}
-                    {form.start_date && (<p className='cv--dates'>{form.start_date} - {form?.due_date}</p>)}
+                    {form.institute && (<p className='cv--position'>{form.institute}{form?.degree !== "" ? `, ${form.degree}` : ''}</p>)}
+                    {form.due_date && (<p className='cv--dates'>{form.due_date}</p>)}
                     {aboutMyselfText[ind] && (<p className='about--myself--content'>{aboutMyselfText[ind].text}</p>)}
                 </div>
             )
         })}
-        {formData.experiences[0].position && (<div className='experiences-cv--line'></div>)}
+        {formData.educations[0].institute && (<div className='experiences-cv--line'></div>)}
     </div>
   )
 }
 
-export default ExperienceCV
+export default EducationCV

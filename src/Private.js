@@ -1,7 +1,7 @@
-import {useState,useRef, useContext} from 'react'
+import {useState, useEffect, useRef, useContext} from 'react'
 import './main.css'
 import ProgressBar from './ProgressBar'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import SuccessLogo from './img/SuccessLogo.png'
 import WarningLogo from './img/WarningLogo.png'
 import {FormDataContext} from './FormDataContext'
@@ -14,9 +14,12 @@ const Private = () => {
         name: 0,
         surname: 0,
         email: 0,
-        phone: 0
+        phone: 0,
+        photo: 0,
+        aboutMyself: 0
     });
     const imageRef = useRef(null)
+    const navigate = useNavigate()
 
     const handleFormChange = (e) => {
         const name = e.target.name 
@@ -30,6 +33,7 @@ const Private = () => {
             const regex = /^[ა-ჰ]+$/
             if(value.length < 2 || !regex.test(value)) {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: -1}))
+                return false
             } else {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
             }
@@ -40,6 +44,7 @@ const Private = () => {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
             } else {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: -1}))
+                return false
             }
         }
         if(name === "phone") {
@@ -48,8 +53,21 @@ const Private = () => {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
             } else {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: -1}))
+                return false
             }
         }
+
+        if(name === "aboutMyself") {
+            if(value) {
+                setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
+                console.log(value)
+            } else {
+                setFormValid(prevFormValid => ({...prevFormValid,[name]: -1}))
+                return false
+            }
+        }
+
+        return true
         
     }
 
@@ -58,8 +76,34 @@ const Private = () => {
     }
 
     const saveImage = (e) => {
-        setFormData({...formData,image: e.target.files[0]})
+        setFormData({...formData,image: URL.createObjectURL(e.target.files[0])})
+        setFormValid((prevFormValid) => ({...prevFormValid,photo: 1}))
     }
+
+    const handleNextBtn = () => {
+        let isValid = true
+        const values = Object.values(formValid)
+        values.forEach((value,ind) => {
+            if(value !== 1 && ind !== 5) {
+                isValid = false
+                return 
+            }
+        })
+        if(isValid) {
+            navigate('/experience')
+        }
+    }
+
+    useEffect(() => {
+        const formNames = Object.keys(formData)
+        const formValues = Object.values(formData)
+        for(let i = 0;i < formNames.length;i++) {
+            checkIfValid(formNames[i],formValues[i])
+        }
+        if(formData.image !== '') {
+            setFormValid((prevFormValid) => ({...prevFormValid,photo: 1}))
+        }
+    },[formData])
 
     return (
         <div className='main'>
@@ -88,7 +132,8 @@ const Private = () => {
                     <input type='file' id='photo' name='photo' alt='ატვირთვა' accept='image/*' className='hidden' onChange={(e) => saveImage(e)} ref={imageRef} required/>
                     <div className='container about--myself'>
                         <label htmlFor="aboutMyself" className='label-font-style'>ჩემს შესახებ (არასავალდებულო) </label>
-                        <textarea id='aboutMyself' name='aboutMyself' rows='4' cols="70" wrap="hard"  
+                        <textarea id='aboutMyself' name='aboutMyself' rows='4' cols="70" wrap="hard"
+                         className={formValid?.aboutMyself === -1 ? 'error' : formValid.aboutMyself === 1 ? 'success' : ''}
                          onChange={(e) => handleFormChange(e)} value={formData.aboutMyself} placeholder='ზოგადი ინფო შენს შესახებ'></textarea>
                     </div>
                     <div className='container contact'>
@@ -108,7 +153,7 @@ const Private = () => {
                         <p className='validation--message'>უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
                     </div>
                     <div className='next--btn--container'>
-                        <Link to='/experience' className='navigation--btn'>შემდეგი</Link>
+                        <button type='button' onClick={() => handleNextBtn()} className='navigation--btn'>შემდეგი</button>
                     </div>
                 </form>
             </div>

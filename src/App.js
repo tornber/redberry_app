@@ -5,13 +5,17 @@ import Starter from './Starter';
 import Private from './Private';
 import {FormDataContext} from './FormDataContext'
 import Experience from './Experience';
+import Education from './Education';
+import EducationForm from './EducationForm'
+import ExperienceForm from './ExperienceForm';
+import Resume from './Resume';
 
 function App() {
 
   const [formData,setFormData] = useState({
       name: '',
       surname: '',
-      image: null,
+      image: '',
       aboutMyself: '',
       email: '',
       phone: '',
@@ -21,8 +25,17 @@ function App() {
         start_date: '',
         due_date: '',
         description: '',
-      }]
+      }],
+      educations: [{
+        institute: '',
+        degree: '',
+        due_date: '',
+        description: '',
+    }]
   });
+  const [educationForms,setEducationForms] = useState([<EducationForm index={0}/>])
+  const [experienceForms,setExperienceForms] = useState([<ExperienceForm index={0}/>])
+
   const [isFirstRender,seIsFirstRender] = useState(true)
   const [prevLocation,setPrevLocation] = useState("")
   const location = useLocation()
@@ -36,17 +49,18 @@ function App() {
       }
       seIsFirstRender((prevIsFirstRender) => !prevIsFirstRender)
     } else {
-      window.sessionStorage.setItem("data",JSON.stringify(formData))
+        window.sessionStorage.setItem("data",JSON.stringify(formData))
     }
   },[formData])
 
   useEffect(() => {
     setPrevLocation(location.pathname)
-    if(prevLocation === "/") {
+    if(prevLocation === "/" || prevLocation === '/resume') {
       setFormData(() => {
         return {
             name: '',
             surname: '',
+            image: '',
             aboutMyself: '',
             email: '',
             phone: '',
@@ -54,6 +68,12 @@ function App() {
               position: '',
               employer: '',
               start_date: '',
+              due_date: '',
+              description: '',
+            }],
+            educations: [{
+              institute: '',
+              degree: '',
               due_date: '',
               description: '',
             }]
@@ -68,7 +88,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Starter/>} />
           <Route path='/private' element={<Private/>} />
-          <Route path='/experience' element={<Experience/>} />
+          <Route path='/experience' element={<Experience forms={experienceForms} setForms={setExperienceForms} />} />
+          <Route path='/education' element={<Education forms={educationForms} setForms={setEducationForms}/>} />
+          <Route path='/resume' element={<Resume />} />
         </Routes>
       </FormDataContext.Provider>
     </div>

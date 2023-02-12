@@ -4,6 +4,8 @@
     margin-top: 70px;
     position: relative;
     overflow: scroll;
+    height: 1080px;
+    min-height: 1080px;
 }
 
 .generatedCV::-webkit-scrollbar {
@@ -104,5 +106,23 @@
     border: 1px solid #C8C8C8;
     width: 660px;
 }
+
+.cv--education {
+    position: absolute;
+    top: max(600px,30vh);
+}
+
+.cv--education h3 {
+    margin-top: 0px;
+}
+
+.finalCV {
+    position: relative;
+    width: 800px;
+    height: 1080px;
+    min-height: 1080px;
+    margin-top: 50px;
+}
+
 
 

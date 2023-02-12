@@ -1,5 +1,6 @@
-import {useState, useContext} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import './main.css'
+import {useNavigate } from 'react-router-dom'
 import SuccessLogo from './img/SuccessLogo.png'
 import WarningLogo from './img/WarningLogo.png'
 import {FormDataContext} from './FormDataContext'
@@ -14,6 +15,7 @@ const ExperienceForm = ({index}) => {
         due_date: 0,
         description: 0,
     });
+    const navigate = useNavigate()
 
     const handleFormChange = (e) => {
         const prevName = e.target.name
@@ -35,14 +37,29 @@ const ExperienceForm = ({index}) => {
 
     const checkIfValid = (name,value) => {
         if(name === 'position' || name === 'employer') {
-            if(value.length < 2) {
+            if(value.trim().length < 2) {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: -1}))
             } else {
                 setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
             }
         }
+        if(name === 'start_date' || name === 'due_date' || name === 'description') {
+            if(value !== '') {
+                setFormValid(prevFormValid => ({...prevFormValid,[name]: 1}))
+            } else {
+                setFormValid(prevFormValid => ({...prevFormValid,[name]: -1}))
+            }
+        }
         
     }
+
+    useEffect(() => {
+        const formNames = Object.keys(formData.experiences[index])
+        const formValues = Object.values(formData.experiences[index])
+        for(let i = 0;i < formNames.length;i++) {
+            checkIfValid(formNames[i],formValues[i])
+        }
+    },[formData.experiences[index]])
 
 
   return (
@@ -58,7 +75,7 @@ const ExperienceForm = ({index}) => {
         <div className='container contact'>
             <label htmlFor="employer" className='label-font-style'>დამსაქმებელი</label>
             <input type="text" id="employer" name={"employer" + index} placeholder='დამსაქმებელი' value={formData.experiences[index].employer} onChange={(e) => handleFormChange(e)}
-             className={formValid?.employer === -1 ? 'error' : formValid.employer === 1 ? 'success' : ''} required/>
+             className={formValid?.employer === -1 ? 'error' : formValid.employer === 1 ? 'success' : ''} min="2" required/>
             {formValid.employer === 1 && (<img className="success--logo"src={SuccessLogo} alt="success logo"/>)}
             {formValid.employer === -1 && <img className="warning--logo minus--1percent"src={WarningLogo} alt="warning logo"/>}
             <p className='validation--message'>მინიმუმ 2 სიმბოლო</p>
@@ -66,18 +83,19 @@ const ExperienceForm = ({index}) => {
         <div className='name--surname'>
             <div className='container name'>
                 <label htmlFor="start_date" className='label-font-style'>დაწყების რიცხვი</label>
-                <input type="date" id="start_date" name={"start_date" + index} placeholder='mm /dd / yyyy' min={2}  onChange={(e) => handleFormChange(e)}
+                <input type="date" id="start_date" name={"start_date" + index} placeholder='mm /dd / yyyy'  onChange={(e) => handleFormChange(e)}
                     className={formValid?.start_date === -1 ? 'error' : formValid.start_date === 1 ? 'success' : ''}  value={formData.experiences[index].start_date} required />
             </div>
             <div className='container name'>
                 <label htmlFor="due_date" className='label-font-style'>დამთავრების რიცხვი</label>
-                <input type="date" id="due_date"  name={"due_date" + index} placeholder='mm /dd / yyyy' min={2} onChange={(e) => handleFormChange(e)}
+                <input type="date" id="due_date"  name={"due_date" + index} placeholder='mm /dd / yyyy' onChange={(e) => handleFormChange(e)}
                     className={formValid?.due_date === -1 ? 'error' : formValid.due_date === 1 ? 'success' : ''} value={formData.experiences[index].due_date} required />
             </div>
         </div>
         <div className='container about--myself'>
             <label htmlFor="description" className='label-font-style'>აღწერა</label>
             <textarea id='description' name={'description' + index} rows='5' cols="70" wrap="hard"  required 
+                className={formValid?.description === -1 ? 'error' : formValid.description === 1 ? 'success' : ''}
                 onChange={(e) => handleFormChange(e)} value={formData.experiences[index].description} placeholder='როლი თანამდებობაზე და ზოგადი აღწერა'></textarea>
         </div>
         <div className='experience--line'></div>

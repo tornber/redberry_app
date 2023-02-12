@@ -5,8 +5,9 @@ import PhoneIcon from './img/phone.png'
 import MailIcon from './img/mail.png'
 import Logo from './img/CVLogo.png'
 import ExperienceCV from './ExperienceCV'
+import EducationCV from './EducationCV'
 
-const GeneratedCV = ({index}) => {
+const GeneratedCV = () => {
 
     const {formData} = useContext(FormDataContext)
     const [aboutMyselfText,setAboutMyselfText] = useState("")
@@ -32,7 +33,7 @@ const GeneratedCV = ({index}) => {
 
     return (
         <div className='generatedCV'>
-            {formData.image && (<img className='cv--image' src={URL.createObjectURL(formData.image)} />)}
+            {formData.image && (<img className='cv--image' src={formData.image} />)}
             <h1 className='cv--name'>{`${formData.name} ${formData.surname}`}</h1>
             {formData.email && (<h3 className='cv--email'><img src={MailIcon} alt="mail icon"/> {formData.email}</h3>)}
             {formData.phone && (<h3 className='cv--phone'><img src={PhoneIcon} alt="telephone icon"/> {formData.phone}</h3>)}
@@ -43,9 +44,11 @@ const GeneratedCV = ({index}) => {
             </div>
             )}
             {formData.name && (<div className='cv--line'></div>)}
-            <img className='cv--logo' src={Logo} alt="cv star logo"/>
             
             <ExperienceCV />
+            <EducationCV />
+            
+            <img className='cv--logo' src={Logo} alt="cv star logo"/>
 
         </div>
     )
